@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.matheus.locadoraCarro.dto.CarroDTO;
+import com.matheus.locadoraCarro.dto.ModeloCarrosDTO;
 import com.matheus.locadoraCarro.dto.ModeloDTO;
 import com.matheus.locadoraCarro.entity.Carro;
 import com.matheus.locadoraCarro.entity.Modelo;
@@ -30,6 +31,7 @@ public class ModeloService {
 	public ModeloDTO getModelo(Modelo modelo) {
 		
 		return ModeloDTO.builder()
+				.id(modelo.getId())
 				.name(modelo.getName())
 				.airBag(modelo.isAirBag())
 				.abs(modelo.isAbs())
@@ -40,13 +42,14 @@ public class ModeloService {
 				.build();
 	}
 	
-	public List<CarroDTO> getCarros(List<Carro> carros) {
+	public List<ModeloCarrosDTO> getCarros(List<Carro> carros) {
 		
 		return carros.stream().map(carro ->
-				CarroDTO.builder()
+				ModeloCarrosDTO.builder()
 				.disponivel(carro.isDisponivel())
 				.km(carro.getKm())
 				.placa(carro.getPlaca())
+				.id(carro.getId())
 				.build()
 			).collect(Collectors.toList());
 	}

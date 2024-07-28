@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.sym.Name;
 import com.matheus.locadoraCarro.dto.MarcaDTO;
+import com.matheus.locadoraCarro.dto.MarcaModelosDTO;
 import com.matheus.locadoraCarro.dto.ModeloDTO;
 import com.matheus.locadoraCarro.entity.Marca;
 import com.matheus.locadoraCarro.entity.Modelo;
@@ -48,14 +49,13 @@ public class MarcaService {
 				.build();	
 	}
 	
-	public List<ModeloDTO> getModelo(List<Modelo> modelo) {
+	public List<MarcaModelosDTO> getModelo(List<Modelo> modelo) {
 		return modelo.stream().map(m -> 
-				ModeloDTO.builder()
-				.name(m.getName())
-				.lugares(m.getLugares())
-				.airBag(m.isAirBag())
+				MarcaModelosDTO.builder()
 				.abs(m.isAbs())
-				.numPortas(m.getNumPortas())
+				.airBag(m.isAirBag())
+				.lugares(m.getLugares())
+				.name(m.getName())
 				.build()
 				).collect(Collectors.toList());
 		}

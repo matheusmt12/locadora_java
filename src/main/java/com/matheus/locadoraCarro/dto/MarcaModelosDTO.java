@@ -1,21 +1,20 @@
 package com.matheus.locadoraCarro.dto;
 
-import java.util.List;
-
-import com.matheus.locadoraCarro.entity.Modelo;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Builder
-@Data
 @NoArgsConstructor
+@Data
 @AllArgsConstructor
-public class MarcaDTO {
+public class MarcaModelosDTO {
 
-	private long id;
-	private String name;
-	private List<MarcaModelosDTO> modelos;
+    private String name;
+    private int lugares;
+    private boolean airBag;
+    private boolean abs;
+    private boolean numPortas;
+	
 }

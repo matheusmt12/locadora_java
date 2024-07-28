@@ -13,12 +13,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ModeloDTO {
 
+	private long id;
 	private String name;
 	private int lugares;
 	private boolean airBag;
 	private boolean abs;
 	private int numPortas;
 	private String nameMarca;
-	private List<CarroDTO> carros;
+	private List<ModeloCarrosDTO> carros;
 	
 }

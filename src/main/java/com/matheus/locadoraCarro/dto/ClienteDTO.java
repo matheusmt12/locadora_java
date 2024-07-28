@@ -14,10 +14,7 @@ public class ClienteDTO {
 
 
 	private long id;
-
 	private String name;
-	
 	private boolean isEnabled;
-	
-	private List<LocacaoDTO> locacoes;
+	private List<ClienteLocacoesDTO> locacoes;
 }

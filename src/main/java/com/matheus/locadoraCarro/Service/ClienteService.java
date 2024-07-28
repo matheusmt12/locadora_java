@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.matheus.locadoraCarro.dto.ClienteDTO;
+import com.matheus.locadoraCarro.dto.ClienteLocacoesDTO;
 import com.matheus.locadoraCarro.dto.LocacaoDTO;
 import com.matheus.locadoraCarro.entity.Cliente;
 import com.matheus.locadoraCarro.entity.Locacoes;
@@ -36,10 +37,12 @@ public class ClienteService {
 		
 	}
 	
-	public List<LocacaoDTO> getLocacoes(List<Locacoes> locacoes){
+	public List<ClienteLocacoesDTO> getLocacoes(List<Locacoes> locacoes){
 		return locacoes.stream().map(locacao -> 
 			
-				LocacaoDTO.builder()
+				ClienteLocacoesDTO.builder()
+				.id(locacao.getId())
+				.modeloCarro(locacao.getCarro().getModelo().getName())
 				.valor(locacao.getValor())
 				.dataInicio(locacao.getData_inicio_periodo())
 				.km_inicial(locacao.getKm_inicial())
