@@ -1,25 +1,23 @@
 package com.matheus.locadoraCarro.dto;
 
 import java.util.List;
-
-import com.matheus.locadoraCarro.entity.Modelo;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CarroDTO {
+@Builder
+public class ClienteDTO {
+
 
 	private long id;
-	private String placa;
-	private boolean disponivel;
-	private int km;
-	private String modelo;
-	private List<LocacaoDTO> locacoes;
+
+	private String name;
 	
+	private boolean isEnabled;
+	
+	private List<LocacaoDTO> locacoes;
 }

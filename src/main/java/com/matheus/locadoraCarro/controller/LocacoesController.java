@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.matheus.locadoraCarro.Service.LocacoesService;
 import com.matheus.locadoraCarro.entity.Locacoes;
 import com.matheus.locadoraCarro.repository.ICarroRepository;
 import com.matheus.locadoraCarro.repository.IClienteRepository;
@@ -26,20 +27,23 @@ public class LocacoesController {
 	private ICarroRepository carroRepository;
 
 	private IClienteRepository clienteRepository;
+	
+	private LocacoesService locacaoService;
 
 	
 	@Autowired
 	public LocacoesController(ILocacoesRepository locacaoRepository, ICarroRepository carroRepository,
-			IClienteRepository clienteRepository) {
+			IClienteRepository clienteRepository , LocacoesService locacoesService) {
 		this.locacaoRepository = locacaoRepository;
 		this.carroRepository = carroRepository;
 		this.clienteRepository = clienteRepository;
+		this.locacaoService = locacoesService;
 	}
 
 	@GetMapping
 	public ResponseEntity get() {
 		try {
-			return new ResponseEntity<>(locacaoRepository.findAll(),HttpStatus.OK);
+			return new ResponseEntity<>(locacaoService.findAll(),HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(e,HttpStatus.INTERNAL_SERVER_ERROR);
