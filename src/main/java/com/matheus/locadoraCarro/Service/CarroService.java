@@ -29,7 +29,7 @@ public class CarroService {
 				).collect(Collectors.toList());
 	}
 	
-	public CarroDTO getCarro(Carro carro) {
+	private CarroDTO getCarro(Carro carro) {
 		return CarroDTO.builder()
 				.km(carro.getKm())
 				.disponivel(carro.isDisponivel())
@@ -40,7 +40,7 @@ public class CarroService {
 				.build();
 	}
 	
-	public List<LocacaoDTO> getLocacoes(List<Locacoes> locacoes){
+	private List<LocacaoDTO> getLocacoes(List<Locacoes> locacoes){
 		return locacoes.stream().map(locacao -> 
 				LocacaoDTO.builder()
 				.dataInicio(locacao.getData_inicio_periodo())

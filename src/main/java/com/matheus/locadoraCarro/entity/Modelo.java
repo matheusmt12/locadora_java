@@ -52,6 +52,6 @@ public class Modelo {
 	@JoinColumn(name = "marca_id")
 	private Marca marca;
 	
-	@OneToMany(mappedBy = "modelo", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "modelo")
 	private List<Carro> carros;
 }

@@ -37,7 +37,7 @@ public class ClienteService {
 		
 	}
 	
-	public List<ClienteLocacoesDTO> getLocacoes(List<Locacoes> locacoes){
+	private List<ClienteLocacoesDTO> getLocacoes(List<Locacoes> locacoes){
 		return locacoes.stream().map(locacao -> 
 			
 				ClienteLocacoesDTO.builder()
@@ -49,6 +49,12 @@ public class ClienteService {
 				.build()
 				).collect(Collectors.toList());
 		
+	}
+	
+	public ClienteDTO getClienteById(long id) {
+
+		Cliente cliente =  clienteRepository.findById(id).get();
+		return getCliente(cliente);
 	}
 	
 }

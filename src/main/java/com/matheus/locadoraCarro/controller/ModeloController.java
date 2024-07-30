@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.matheus.locadoraCarro.Service.ModeloService;
 import com.matheus.locadoraCarro.entity.Modelo;
+import com.matheus.locadoraCarro.repository.IMarcaRepository;
 import com.matheus.locadoraCarro.repository.IModeloRepository;
 
 @RestController
@@ -24,10 +25,13 @@ public class ModeloController {
 	
 	private IModeloRepository modeloRepository;
 	private ModeloService modeloService;
-	
-	public ModeloController( @Autowired IModeloRepository modeloRepository, @Autowired ModeloService modeloService) {
+	private IMarcaRepository marcaRepository;
+	 
+	@Autowired
+	 public ModeloController( IModeloRepository modeloRepository, ModeloService modeloService, IMarcaRepository marcaRepository) {
 		this.modeloRepository = modeloRepository;
 		this.modeloService = modeloService;
+		this.marcaRepository = marcaRepository;
 	}
 	
 	@GetMapping
@@ -44,7 +48,6 @@ public class ModeloController {
 	@PostMapping()
 	public ResponseEntity post(@RequestBody Modelo modelo) {
 		try {
-			System.out.println(modelo);
 			return new ResponseEntity<>(modeloRepository.save(modelo),HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception

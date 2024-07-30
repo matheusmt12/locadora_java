@@ -28,7 +28,7 @@ public class ModeloService {
 		
 	}
 	
-	public ModeloDTO getModelo(Modelo modelo) {
+	private ModeloDTO getModelo(Modelo modelo) {
 		
 		return ModeloDTO.builder()
 				.id(modelo.getId())
@@ -42,7 +42,7 @@ public class ModeloService {
 				.build();
 	}
 	
-	public List<ModeloCarrosDTO> getCarros(List<Carro> carros) {
+	private List<ModeloCarrosDTO> getCarros(List<Carro> carros) {
 		
 		return carros.stream().map(carro ->
 				ModeloCarrosDTO.builder()
