@@ -13,7 +13,7 @@ public class AppConfiguration {
 	
 
 	@Bean
-	public void inite() {
-		System.out.println("teste");
+	public String inite() {
+		return getMessage();
 	}
 }

@@ -45,4 +45,8 @@ public class MarcaService {
 				.build()
 				).collect(Collectors.toList());
 		}
+	
+	public Marca getId(long id) {
+		return marcaRepository.getMaircaId(id);
+	}
 }

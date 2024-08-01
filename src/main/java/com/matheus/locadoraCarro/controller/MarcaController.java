@@ -46,6 +46,19 @@ public class MarcaController {
 		}
 	}
 	
+	
+	@GetMapping("{id}")
+	public ResponseEntity getID(@PathVariable long id) {
+		
+		try {
+			return new ResponseEntity<>(marceService.findAll(),HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return new ResponseEntity<>(e,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
 	@PostMapping
 	public ResponseEntity post(@RequestBody Marca marca) {
 		try {
