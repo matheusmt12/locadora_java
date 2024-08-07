@@ -10,6 +10,8 @@ import com.matheus.locadoraCarro.exceptions.CarroIndisponivelException;
 import com.matheus.locadoraCarro.exceptions.ClienteNoActive;
 import com.matheus.locadoraCarro.exceptions.NoCarroExeption;
 import com.matheus.locadoraCarro.exceptions.NoClienteException;
+import com.matheus.locadoraCarro.exceptions.PasswordNoFoundException;
+import com.matheus.locadoraCarro.exceptions.UsernameNoFoundException;
 
 @RestControllerAdvice
 public class ApplicatioAdviceController {
@@ -39,6 +41,18 @@ public class ApplicatioAdviceController {
 	@ExceptionHandler(ClienteNoActive.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ResponseDTO handlerClienteNoActive(ClienteNoActive ex) {
+		return new ResponseDTO<>(ex.getMessage(), null);
+	}
+	
+	@ExceptionHandler(UsernameNoFoundException.class)
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
+	public ResponseDTO handlerUsernameNoFoundException(UsernameNoFoundException ex) {
+		return new ResponseDTO<>(ex.getMessage(),null);
+	}
+	
+	@ExceptionHandler(PasswordNoFoundException.class)
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
+	public ResponseDTO PasswordNoFoundException(PasswordNoFoundException ex) {
 		return new ResponseDTO<>(ex.getMessage(), null);
 	}
 	
