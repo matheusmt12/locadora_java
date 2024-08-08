@@ -21,7 +21,7 @@ public class CustomUserDetailService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userService.getByUSerName(username);
-		if (user == null) {
+		if(user == null) {
 			throw new UsernameNoFoundException("Usuario não encontrado");
 		}
 		return new UserPrincipal(user);
@@ -29,8 +29,8 @@ public class CustomUserDetailService implements UserDetailsService {
 	
 	public void verifyUserCredentials(LoginDTO loginDto) {
 		
-		UserDetails user = loadUserByUsername(loginDto.getUsernam());
-		boolean verify = SecurityConfig.passEncoder().matches(loginDto.getPasswor(), user.getPassword());
+		UserDetails user = loadUserByUsername(loginDto.getUsername());
+		boolean verify = SecurityConfig.passwordEncoder().matches(loginDto.getPassword(), user.getPassword());
 		if(!verify) {
 			throw new PasswordNoFoundException("Senha inválida");
 		}

@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +14,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Table(name = "users")
 public class User {
 	@Id
@@ -24,7 +22,7 @@ public class User {
 	private long id;
 	
 	@NotBlank(message = "o campo password é requirido")
-	@Column(name = "password", length = 50,nullable = false)
+	@Column(name = "password", length = 120,nullable = false)
 	private String password;
 
 	@NotBlank(message = "O campo username é requerido")

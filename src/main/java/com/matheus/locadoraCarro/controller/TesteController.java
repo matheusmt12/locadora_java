@@ -13,7 +13,7 @@ import com.matheus.locadoraCarro.dto.TesteDTO;
 @RequestMapping("/teste")
 public class TesteController {
 
-	
+		
 	@PostMapping
 	public ResponseEntity post (@RequestBody TesteDTO teste) {
 		return new ResponseEntity<>(teste,HttpStatus.OK);

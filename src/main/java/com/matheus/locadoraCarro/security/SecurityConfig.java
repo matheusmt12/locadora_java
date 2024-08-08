@@ -15,11 +15,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	@Bean
-	public static PasswordEncoder passEncoder() {
-		return new  BCryptPasswordEncoder();
-	}
-
+    @Bean
+    public static PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 	@Bean
 	public SecurityFilterChain config (HttpSecurity http) throws Exception{
 		
@@ -30,9 +29,9 @@ public class SecurityConfig {
 	                .requestMatchers("/marca").permitAll()
 	                .requestMatchers("/modelo").permitAll()
 	                .requestMatchers("/login").permitAll()
-	                .requestMatchers("/teste").permitAll()
+	                .requestMatchers("/sing-up").permitAll()
 	                .anyRequest().authenticated())
-	        .httpBasic(Customizer.withDefaults())
+
 	        .sessionManagement((session)-> session
 	                .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 	      return http.build();
