@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot Thymeleaf Layout</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <h1>Meu Aplicativo</h1>
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/login/cadastro}">Cadastro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main" class="container">
+        <div th:fragment="content">
+            <!-- O conteúdo específico da página será incluído aqui -->
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 Meu Aplicativo</p>
+    </footer>
+</body>
+</html>
