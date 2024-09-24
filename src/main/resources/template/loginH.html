@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login locadora</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div th:replace="base :: content">
+        <div id="app">
+            <div class="container"></div>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                            Login
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <div>
+                                        <label for="username" class="form-label">Usuário</label>
+                                        <input type="text" v-model="username" id="idusername" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="password" class="form-label">Senha</label>
+                                        <input type="password" v-model="password" id="idpassword" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary btn-sm float-right" @click="login()">Login</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" @click="fetchProtectedResource()">Teste</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    password: '',
+                    username: ''
+                }
+            },
+            methods: {
+                login() {
+                    console.log("Tentando login...");
+                    let data = {
+                        password: this.password,
+                        username: this.username
+                    };
+                    const url = 'http://localhost:8080/login';
+                    
+                    axios.post(url, data)
+                        .then(response => {
+                            // Supondo que o token esteja no campo `token` da resposta
+                            const token = response.data.token;
+                            // Salvar o token no localStorage
+                            localStorage.setItem('authToken', token);
+                            console.log('Login bem-sucedido, token salvo:', token);
+                            window.location.href = 'http://127.0.0.1:5500/src/main/resources/template/marca/index.html';
+                        })
+                        .catch(error => {
+                            console.error('Erro ao fazer login:', error.response);
+                        });
+                },
+                fetchProtectedResource() {
+                    const token = localStorage.getItem('authToken');
+                    console.log("Token :".token);
+                    axios.get('http://localhost:8080/marca', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    })
+                    .then(response => {
+                        console.log('Dados recebidos:', response.data);
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar recurso protegido:', error.response);
+                    });
+                }
+            }
+        }).mount('#app');
+        
+    </script>
+    
+</body>
+</html>
